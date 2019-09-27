@@ -1,0 +1,19 @@
+$font-family-sans-serif: "Roboto", sans-serif;
+$preferred_font: $font-family-sans-serif;
+$performance_font: $font-family-sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+$spacer: .75em;
+
+$theme-colors: (
+  "primary": #8c0000,
+  "danger": #ff4136
+);
+
+$enable-flex: true;
+$brand-very-light: rgba(205, 16, 39, 0.14);
+$body-bg: #FFFFFF;
+
+$header-height: 48px;
+$header-fg: #FFFFFF;
+$header-bg: #CDCDCD;
