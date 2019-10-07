@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="m-3">
     <div v-if="news">
 
       <h3 style="font-weight: 200;line-height: 1.1" class="text-primary mb-2">{{ news.headline }}</h3>

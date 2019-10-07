@@ -1,0 +1,69 @@
+.stats
+  font-weight: 200
+  font-size: 1em
+  &--highlight
+    background: $brand-very-light
+
+  &-player
+    font-weight: 300
+    &-image
+      width: 30px
+      margin-right: 5px
+      box-shadow: 0 0 5px rgba(0,0,0,.3)
+
+  &-table
+    tbody
+      td
+        text-align: right
+        &:first-child
+          text-align: left
+
+.table
+  font-size: 90%
+  font-family: "Roboto Mono", monospace
+
+  td
+    white-space: nowrap
+    padding: .5rem
+    height: 40px
+    min-width: 40px
+
+  thead
+    th
+      white-space: nowrap
+      font-family: "Roboto"
+      font-weight: 400
+      text-transform: uppercase
+      border-color: #4c4c4c
+      background: black
+      color: white
+      .stats--icon
+        display: none
+      &.stats--highlight
+        background: theme-color("primary")
+        .stats--icon
+          display: inline
+  &-container
+    &--scrollable
+      max-width: 100%
+      position: relative
+      margin-left: 105px
+
+      .table
+        thead
+          tr
+            th
+              border-bottom: 0
+              &:first-child
+                position: absolute
+                left: -105px+1
+                width: 105px
+
+        tbody
+          tr
+            td:first-child
+              background: #efefef
+              color: #c00
+              position: absolute
+              left: -105px+1
+              width: 105px
