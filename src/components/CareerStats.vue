@@ -14,7 +14,7 @@
     </ul>
 
     <div class="stats-table table-container table-container--scrollable">
-      <table class="table table-responsive">
+      <table class="table table-responsive" v-if="type === 'skater'">
         <thead>
           <tr>
             <th @click="sortBy('season')" :class="{ 'stats--highlight': sortedBy === 'season' }">
@@ -180,12 +180,153 @@
           </tr>
         </tbody>
       </table>
+      <table class="table table-responsive" v-if="type === 'goalie'">
+        <thead>
+          <tr>
+            <th @click="sortBy('season')" :class="{ 'stats--highlight': sortedBy === 'season' }">
+              Season
+            </th>
+            <th @click="sortBy('team')" :class="{ 'stats--highlight': sortedBy === 'team' }">
+              Team
+            </th>
+            <th @click="sortBy('games')" :class="{ 'stats--highlight': sortedBy === 'games' }">
+              GP
+            </th>
+            <th @click="sortBy('gamesStarted')" :class="{ 'stats--highlight': sortedBy === 'gamesStarted' }">
+              GS
+            </th>
+            <th @click="sortBy('wins')" :class="{ 'stats--highlight': sortedBy === 'wins' }">
+              W
+            </th>
+            <th @click="sortBy('losses')" :class="{ 'stats--highlight': sortedBy === 'losses' }">
+              L
+            </th>
+            <th @click="sortBy('ot')" :class="{ 'stats--highlight': sortedBy === 'ot' }">
+              OT
+            </th>
+            <th @click="sortBy('shotsAgainst')" :class="{ 'stats--highlight': sortedBy === 'shotsAgainst' }">
+              SA
+            </th>
+            <th @click="sortBy('goalsAgainst')" :class="{ 'stats--highlight': sortedBy === 'goalsAgainst' }">
+              GA
+            </th>
+            <th @click="sortBy('goalAgainstAverage')" :class="{ 'stats--highlight': sortedBy === 'goalAgainstAverage' }">
+              GAA
+            </th>
+            <th @click="sortBy('saves')" :class="{ 'stats--highlight': sortedBy === 'saves' }">
+              S
+            </th>
+            <th @click="sortBy('savePercentage')" :class="{ 'stats--highlight': sortedBy === 'savePercentage' }">
+              SV%
+            </th>
+            <th @click="sortBy('shutouts')" :class="{ 'stats--highlight': sortedBy === 'shutouts' }">
+              SO
+            </th>
+            <th @click="sortBy('timeOnIce')" :class="{ 'stats--highlight': sortedBy === 'timeOnIce' }">
+              MIN
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="season in sortedSeasons" :key="season.season">
+            <td :class="{ 'stats--highlight': sortedBy === 'season' }">
+              {{ season.season.substr(0, 4) }}-{{ season.season.substr(4, season.season.length) }}
+            </td>
+            <td class="text-left" :class="{ 'stats--highlight': sortedBy === 'team' }">
+              {{ season.team.abbreviation }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'games' }">
+              {{ season.stat.games }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'gamesStarted' }">
+              {{ season.stat.gamesStarted }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'wins' }">
+              {{ season.stat.wins }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'losses' }">
+              {{ season.stat.losses }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'ot' }">
+              {{ season.stat.ot }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'shotsAgainst' }">
+              {{ format(season.stat.shotsAgainst) }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'goalsAgainst' }">
+              {{ season.stat.goalsAgainst }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'goalAgainstAverage' }">
+              {{ season.stat.goalAgainstAverage.toFixed(3) }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'saves' }">
+              {{ format(season.stat.saves) }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'savePercentage' }">
+              {{ season.stat.savePercentage.toFixed(3) }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'shutouts' }">
+              {{ season.stat.shutouts }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'timeOnIce' }">
+              {{ format(parseInt(season.stat.timeOnIce)) }}
+            </td>
+          </tr>
+
+          <tr class="font-weight-bold">
+            <td :class="{ 'stats--highlight': sortedBy === 'season' }">
+              Career
+            </td>
+            <td class="text-left" :class="{ 'stats--highlight': sortedBy === 'team' }">
+              &mdash;
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'games' }">
+              {{ career.stat.games }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'gamesStarted' }">
+              {{ career.stat.gamesStarted }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'wins' }">
+              {{ career.stat.wins }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'losses' }">
+              {{ career.stat.losses }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'ot' }">
+              {{ career.stat.ot }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'shotsAgainst' }">
+              {{ format(career.stat.shotsAgainst) }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'goalsAgainst' }">
+              {{ career.stat.goalsAgainst }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'goalAgainstAverage' }">
+              {{ career.stat.goalAgainstAverage.toFixed(3) }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'saves' }">
+              {{ format(career.stat.saves) }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'savePercentage' }">
+              {{ career.stat.savePercentage.toFixed(3) }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'shutouts' }">
+              {{ career.stat.shutouts }}
+            </td>
+            <td :class="{ 'stats--highlight': sortedBy === 'timeOnIce' }">
+              {{ format(parseInt(career.stat.timeOnIce)) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
 import Team from '@/directives/Team'
+
+const formatter = new Intl.NumberFormat()
 
 export default {
   directives: {
@@ -204,6 +345,10 @@ export default {
     career: {
       required: true,
       type: Object
+    },
+    type: {
+      required: true,
+      type: String,
     }
   },
 
@@ -253,6 +398,9 @@ export default {
       }
       this.sortedDirection = 'asc'
       this.sortedBy = sortBy
+    },
+    format(number) {
+      return formatter.format(number)
     }
   }
 }

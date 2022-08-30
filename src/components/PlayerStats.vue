@@ -1,7 +1,7 @@
 <template>
   <div v-if="player">
     <div class="player-action-image" v-bind:style="{
-      backgroundImage: `url('https://nhl.bamcontent.com/images/actionshots/${player.id}.jpg')`
+      backgroundImage: `url('https://cms.nhl.bamgrid.com/images/actionshots/${player.id}.jpg')`
     }">
 
     </div>
@@ -9,7 +9,7 @@
       <div
         class="player-image"
         v-bind:style="{
-          backgroundImage: `url('https://nhl.bamcontent.com/images/headshots/current/60x60/${player.id}.png')` }"
+          backgroundImage: `url('https://cms.nhl.bamgrid.com/images/headshots/current/60x60/${player.id}.png')` }"
       />
     </div>
     <h3 class="text-center mt-3">
@@ -78,12 +78,12 @@
 
     <div class="player-stats-block mt-5">
       <h5 class="text-center">Game Log</h5>
-      <game-log :game-log="gameLog" v-if="player" />
+      <game-log :type="player.primaryPosition.code === 'G' ? 'goalie' : 'skater'" :game-log="gameLog" v-if="player" />
     </div>
 
     <div class="player-stats-block">
       <h5 class="text-center">Career Stats</h5>
-      <career-stats :seasons="seasons" :career="career" :playoffs="playoffs" v-if="player" />
+      <career-stats :type="player.primaryPosition.code === 'G' ? 'goalie' : 'skater'" :seasons="seasons" :career="career" :playoffs="playoffs" v-if="player" />
     </div>
   </div>
 </template>

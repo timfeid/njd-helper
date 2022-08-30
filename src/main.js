@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 if (!window.webConnector) {
   window.webConnector = {
     load() {
-      return 8471233
+      return 8478406
     },
     component() {
       return 'player-stats'
@@ -20,7 +20,7 @@ if (!window.webConnector) {
       return 68791103
     },
     seasonId () {
-      return '20192020'
+      return '20222023'
     }
   }
 }

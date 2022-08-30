@@ -2,3 +2,7 @@
 @import 'node_modules/bootstrap-scss/bootstrap.scss';
 
 @import 'stats.sass';
+
+.table th, .table td {
+  border-top: 1px solid #dee2e6 !important;
+}
